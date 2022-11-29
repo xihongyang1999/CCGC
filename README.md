@@ -1,6 +1,6 @@
 [stars-img]: https://img.shields.io/github/stars/xihongyang1999/CCGC?color=yellow
 [stars-url]: https://github.com/xihongyang1999/CCGC/stargazers
-[fork-img]: https://img.shields.io/github/forks/xihong1999yang/CCGC?color=lightblue&label=fork
+[fork-img]: https://img.shields.io/github/forks/xihongyang1999/CCGC?color=lightblue&label=fork
 [fork-url]: https://github.com/xihongyang1999/CCGC/network/members
 [visitors-img]: https://visitor-badge.glitch.me/badge?page_id=xihongyang1999.CCGC
 [adgc-url]: https://github.com/xihongyang1999/CCGC
