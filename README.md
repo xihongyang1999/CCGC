@@ -67,11 +67,12 @@ python train.py
 ### Clustering Results
 
 <div  align="center">    
-    <img src="./assets/HSAN_result.png" width=100%/>
+    <img src="./assets/CCGC_result.png" width=100%/>
 </div>
 <div  align="center">    
     Table 1: Clustering results of our proposed CCGC and twelve baselines on six datasets.
 </div>
+
 
 <div  align="center">    
     <img src="./assets/CCGC_tsne.png" width=100%/>
