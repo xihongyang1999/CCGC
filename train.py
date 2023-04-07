@@ -6,7 +6,7 @@ from model import Encoder_Net
 import torch.nn.functional as F
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--gnnlayers', type=int, default=3, help="Number of gnn layers")
+parser.add_argument('--t', type=int, default=4, help="Number of gnn layers")
 parser.add_argument('--linlayers', type=int, default=1, help="Number of hidden layers")
 parser.add_argument('--epochs', type=int, default=400, help='Number of epochs to train.')
 parser.add_argument('--dims', type=int, default=500, help='feature dim')
@@ -14,7 +14,8 @@ parser.add_argument('--lr', type=float, default=1e-4, help='Initial learning rat
 parser.add_argument('--dataset', type=str, default='cora', help='name of dataset.')
 parser.add_argument('--cluster_num', type=int, default=7, help='number of cluster.')
 parser.add_argument('--device', type=str, default='cuda', help='the training device')
-parser.add_argument('--threshold', type=float, default=0.8, help='the threshold of high-confidence')
+parser.add_argument('--threshold', type=float, default=0.5, help='the threshold of high-confidence')
+parser.add_argument('--alpha', type=float, default=0.5, help='trade-off of loss')
 args = parser.parse_args()
 
 #load data
@@ -23,7 +24,7 @@ adj = adj - sp.dia_matrix((adj.diagonal()[np.newaxis, :], [0]), shape=adj.shape)
 adj.eliminate_zeros()
 
 # Laplacian Smoothing
-adj_norm_s = preprocess_graph(adj, args.gnnlayers, norm='sym', renorm=True)
+adj_norm_s = preprocess_graph(adj, args.t, norm='sym', renorm=True)
 smooth_fea = sp.csr_matrix(features).toarray()
 for a in adj_norm_s:
     smooth_fea = a.dot(smooth_fea)
@@ -101,7 +102,7 @@ for seed in range(10):
                 S_diag = torch.diag_embed(torch.diag(S))
                 S = S - S_diag
                 neg_contrastive = F.mse_loss(S, torch.zeros_like(S))
-                loss = pos_contrastive + 1 * neg_contrastive
+                loss = pos_contrastive + args.alpha * neg_contrastive
 
         else:
             S = z1 @ z2.T
