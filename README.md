@@ -93,7 +93,10 @@ If you find this project useful for your research, please cite your paper with t
 @inproceedings{CCGC,
   title={Cluster-guided Contrastive Graph Clustering Network},
   author={Yang, Xihong and Liu, Yue and Zhou, Sihang and Wang, Siwei and Tu, Wenxuan and Zheng, Qun and Liu, Xinwang and Fang, Liming and Zhu, En},
-  booktitle={Proc. of AAAI},
+  booktitle={Proceedings of the AAAI conference on artificial intelligence},
+  volume={37},
+  number={9},
+  pages={10834--10842},
   year={2023}
 }
 ```
